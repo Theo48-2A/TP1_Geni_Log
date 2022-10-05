@@ -91,6 +91,38 @@ class GildedRose {
                    throw new IllegalArgumentException("La qualité de Sulfuras, Hand of Ragnaros est obligatoirement de 80");
                 }
                 break;
+                
+             case "Aged Brie":   //L'item est un "Aged Brie"
+                item = Aged_Brie(item);
+                break;   
+             
+          }
+          
+          private Item Aged_Brie(Item item){
+             if(item.sellIn < 0){
+                item.quality = item.quality + 2;
+             }
+             else{
+                item.quality = item.quality + 1;
+             }
+             item = Test_Quality_borne_sup(item, 50); // La qualité ne peut pas dépasser 50
+             return item;
+          
+          }
+          
+          private Item Test_Quality_borne_sup(Item item, int borne){
+             if(item.quality > borne){  // La qualité ne peut pas dépasser borne
+                item.quality = borne;
+             }
+             return item;
+          }
+    
+          private Item Test_Quality_borne_inf(Item item, int borne){
+             if(item.quality < borne){  // La qualité ne peut pas descendre en dessous de borne
+                item.quality = borne;
+             }
+             return item;
+    
           }
          
     } 
