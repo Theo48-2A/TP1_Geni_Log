@@ -77,10 +77,91 @@ class GildedRose {
              throw new IllegalArgumentException("La qualité ne peut pas dépasser 50");      // Si la qualité est supérieur à 50 on déclenche une exeption
           }
           
-         
+         if(item.name.equals("Conjured")){	//Conjured perd 2 points de sellIn
+             item.sellIn = item.sellIn - 2;
+          }
+          else if(!item.name.equals("Sulfuras, Hand of Ragnaros")){   //Tous les autres perdent 1 point sauf Sulfuras, qui perd aucun points
+             item.sellIn = item.sellIn - 1;
+          }
+          switch(item.name){	//maintenant on a 4 possibilités
           
-
-        
+             case "Sulfuras, Hand of Ragnaros": //L'item est un "Sulfuras, Hand of Ragnaros"
+                //Qualité doit tjr être égal à 80, si c'est pas le cas on retourne une exeption
+                if(item.quality != 80){
+                   throw new IllegalArgumentException("La qualité de Sulfuras, Hand of Ragnaros est obligatoirement de 80");
+                }
+                break;
+                
+             case "Aged Brie":   //L'item est un "Aged Brie"
+                item = Aged_Brie(item);
+                break;  
+                
+             case "Backstage passes to a TAFKAL80ETC concert":  //L'item est un "Backstage passes to a TAFKAL80ETC concert"
+                item = Backstage_passes_to_a_TAFKAL80ETC_concert(item);
+                break;
+                
+             default:  //L'item porte un nom quelconque ou bien c'est un "Conjured"
+                item = default_item(item);
+                break;
+             
+          }
+          
+          private Item Aged_Brie(Item item){
+             if(item.sellIn < 0){
+                item.quality = item.quality + 2;
+             }
+             else{
+                item.quality = item.quality + 1;
+             }
+             item = Test_Quality_borne_sup(item, 50); // La qualité ne peut pas dépasser 50
+             return item;
+          
+          }
+          
+          private Item Backstage_passes_to_a_TAFKAL80ETC_concert(Item item){
+             if(item.sellIn < 0){
+                item.quality = 0;
+             }
+             else if(item.sellIn < 6){
+                item.quality = item.quality + 3;
+             }
+             else if(item.sellIn < 11){
+                item.quality = item.quality + 2;
+             }
+             else{
+                item.quality = item.quality + 1;
+             }
+             item = Test_Quality_borne_sup(item, 50); // La qualité ne peut pas dépasser 50
+             return item;
+          
+          }
+    
+          private Item default_item(Item item){
+             if(item.sellIn < 0){
+                item.quality = item.quality - 2;
+             }
+             else{
+                item.quality = item.quality - 1;
+             }
+             item = Test_Quality_borne_inf(item, 0); // La qualité ne peut pas descendre en dessous 0
+             return item;
+          
+          }
+          
+          private Item Test_Quality_borne_sup(Item item, int borne){
+             if(item.quality > borne){  // La qualité ne peut pas dépasser borne
+                item.quality = borne;
+             }
+             return item;
+          }
+    
+          private Item Test_Quality_borne_inf(Item item, int borne){
+             if(item.quality < borne){  // La qualité ne peut pas descendre en dessous de borne
+                item.quality = borne;
+             }
+             return item;
+    
+          }
          
     } 
     
