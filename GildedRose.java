@@ -85,7 +85,12 @@ class GildedRose {
           }
           switch(item.name){	//maintenant on a 4 possibilités
           
-
+             case "Sulfuras, Hand of Ragnaros": //L'item est un "Sulfuras, Hand of Ragnaros"
+                //Qualité doit tjr être égal à 80, si c'est pas le cas on retourne une exeption
+                if(item.quality != 80){
+                   throw new IllegalArgumentException("La qualité de Sulfuras, Hand of Ragnaros est obligatoirement de 80");
+                }
+                break;
           }
          
     } 
