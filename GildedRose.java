@@ -83,9 +83,10 @@ class GildedRose {
           else if(!item.name.equals("Sulfuras, Hand of Ragnaros")){   //Tous les autres perdent 1 point sauf Sulfuras, qui perd aucun points
              item.sellIn = item.sellIn - 1;
           }
+          switch(item.name){	//maintenant on a 4 possibilités
           
 
-        
+          }
          
     } 
     
