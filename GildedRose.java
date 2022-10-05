@@ -95,8 +95,13 @@ class GildedRose {
              case "Aged Brie":   //L'item est un "Aged Brie"
                 item = Aged_Brie(item);
                 break;  
+                
              case "Backstage passes to a TAFKAL80ETC concert":  //L'item est un "Backstage passes to a TAFKAL80ETC concert"
                 item = Backstage_passes_to_a_TAFKAL80ETC_concert(item);
+                break;
+                
+             default:  //L'item porte un nom quelconque ou bien c'est un "Conjured"
+                item = default_item(item);
                 break;
              
           }
@@ -131,6 +136,17 @@ class GildedRose {
           
           }
     
+          private Item default_item(Item item){
+             if(item.sellIn < 0){
+                item.quality = item.quality - 2;
+             }
+             else{
+                item.quality = item.quality - 1;
+             }
+             item = Test_Quality_borne_inf(item, 0); // La qualité ne peut pas descendre en dessous 0
+             return item;
+          
+          }
           
           private Item Test_Quality_borne_sup(Item item, int borne){
              if(item.quality > borne){  // La qualité ne peut pas dépasser borne
