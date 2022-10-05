@@ -77,7 +77,12 @@ class GildedRose {
              throw new IllegalArgumentException("La qualité ne peut pas dépasser 50");      // Si la qualité est supérieur à 50 on déclenche une exeption
           }
           
-         
+         if(item.name.equals("Conjured")){	//Conjured perd 2 points de sellIn
+             item.sellIn = item.sellIn - 2;
+          }
+          else if(!item.name.equals("Sulfuras, Hand of Ragnaros")){   //Tous les autres perdent 1 point sauf Sulfuras, qui perd aucun points
+             item.sellIn = item.sellIn - 1;
+          }
           
 
         
