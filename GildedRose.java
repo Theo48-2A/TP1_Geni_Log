@@ -1,7 +1,7 @@
 package com.gildedrose;
 
 class GildedRose {
-    Item[] items;
+    protected Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -66,7 +66,7 @@ class GildedRose {
     
 
 
-    public void New_updateQuality() {
+    public void newUpdateQuality() {
 
         for (Item item : this.items){  // On parcourt les items de l'objet
         
@@ -77,15 +77,110 @@ class GildedRose {
              throw new IllegalArgumentException("La qualité ne peut pas dépasser 50");      // Si la qualité est supérieur à 50 on déclenche une exeption
           }
           
-         
+          
+          if(!item.name.equals("Sulfuras, Hand of Ragnaros")){   //Tous les autres perdent 1 point sauf Sulfuras, qui perd aucun points
+             item.sellIn -= 1;
+          }
           
 
         
-         
+          switch(item.name){	//maintenant on a 4 possibilités
+   
+             case "Sulfuras, Hand of Ragnaros": //L'item est un "Sulfuras, Hand of Ragnaros"
+                //Qualité doit tjr être égal à 80, si c'est pas le cas on retourne une exeption
+                if(item.quality != 80){
+                   throw new IllegalArgumentException("La qualité de Sulfuras, Hand of Ragnaros est obligatoirement de 80");
+                }
+                break;
+                
+             case "Aged Brie":   //L'item est un "Aged Brie"
+                item = agedBrie(item);
+                break;
+                
+             case "Backstage passes to a TAFKAL80ETC concert":  //L'item est un "Backstage passes to a TAFKAL80ETC concert"
+                item = backstagePassesToATafkal80EtcConcertTrois(item);
+                break;
+             
+             case "Conjured": //L'item est un Conjured
+                item = conjured(item);
+                break;
+
+             default:  //L'item porte un nom quelconque 
+                item = defaultItem(item);
+                break;
+          }
+
+        }
     } 
     
     
     
-
+    private Item agedBrie(Item item){
+        if(item.sellIn < 0){
+           item.quality += 2;
+        }
+        else{
+           item.quality += 1;
+        }
+        item = testQualityBorneSup(item, 50); // La qualité ne peut pas dépasser 50
+        return item;
+          
+    }
     
+    private Item backstagePassesToATafkal80EtcConcertTrois(Item item){
+        if(item.sellIn < 0){
+           item.quality = 0;
+        }
+        else if(item.sellIn < 6){
+           item.quality += 3;
+        }
+        else if(item.sellIn < 11){
+           item.quality += 2;
+        }
+        else{
+           item.quality += 1;
+        }
+        item = testQualityBorneSup(item, 50); // La qualité ne peut pas dépasser 50
+        return item;
+          
+    }
+    
+    private Item conjured(Item item){
+        if(item.sellIn < 0){
+           item.quality -= 4;
+        }
+        else{
+           item.quality -= 2;
+        }
+        item = testQualityBorneInf(item, 0); // La qualité ne peut pas descendre en dessous 0
+        return item;
+          
+    }
+    
+    private Item defaultItem(Item item){
+        if(item.sellIn < 0){
+           item.quality -= 2;
+        }
+        else{
+           item.quality -= 1;
+        }
+        item = testQualityBorneInf(item, 0); // La qualité ne peut pas descendre en dessous 0
+        return item;
+          
+    }
+    
+    private Item testQualityBorneSup(Item item, int borne){
+        if(item.quality > borne){  // La qualité ne peut pas dépasser borne
+           item.quality = borne;
+        }
+        return item;
+    }
+    
+    private Item testQualityBorneInf(Item item, int borne){
+        if(item.quality < borne){  // La qualité ne peut pas descendre en dessous de borne
+           item.quality = borne;
+        }
+        return item;
+    
+    }
 }
