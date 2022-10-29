@@ -18,7 +18,7 @@ class GildedRoseTest {
     Item element = new Item("FIXME", 0, 0);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(app.items[0].name, is("FIXME")); //app.items[0] est en faite l'item element
 
     
@@ -37,14 +37,14 @@ class GildedRoseTest {
 
   //peremption <= 0
   @Test
-  void Test_Aged_Brie1() {
+  void testAgedBrieUn() {
   
     int peremption = 0;
     int qualite = 50;
     Item element = new Item("Aged Brie", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Aged Brie"));
     assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(qualite));
@@ -53,14 +53,14 @@ class GildedRoseTest {
 // Qualité < 49:
   //peremption > 0
   @Test
-  void Test_Aged_Brie2() {
+  void testAgedBrieDeux() {
   
     int peremption = 10;
     int qualite = 48;
     Item element = new Item("Aged Brie", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Aged Brie"));
     assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(qualite+1));
@@ -68,14 +68,14 @@ class GildedRoseTest {
   }
   //peremption <= 0
   @Test
-  void Test_Aged_Brie3() {
+  void testAgedBrieTrois() {
   
     int peremption = 0;
     int qualite = 48;
     Item element = new Item("Aged Brie", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Aged Brie"));
     assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(qualite+2));
@@ -90,14 +90,14 @@ class GildedRoseTest {
 // Sulfuras ne périme pas donc le cas peremption < 0 ne devrait pas avoir à etre traité, cependant pour obtenir 100 pourcent sur Jacoco et donc passer par toutes les eventualités possible, ce test est nécessaire
 
 @Test
-  void Sulfuras_Hand_of_Ragnaros1() {
+  void testSulfurasHandOfRagnarosUn() {
   
     int peremption = -1;
     int qualite = 80;
     Item element = new Item("Sulfuras, Hand of Ragnaros", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Sulfuras, Hand of Ragnaros"));
     assertThat(element.sellIn, is(peremption));
     assertThat(element.quality, is(qualite));
@@ -107,14 +107,14 @@ class GildedRoseTest {
 // peremption >= 0
 
 @Test
-  void Sulfuras_Hand_of_Ragnaros2() {
+  void testSulfurasHandOfRagnarosDeux() {
   
     int peremption = 1;
     int qualite = 80;
     Item element = new Item("Sulfuras, Hand of Ragnaros", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Sulfuras, Hand of Ragnaros"));
     assertThat(element.sellIn, is(peremption));
     assertThat(element.quality, is(qualite));
@@ -129,14 +129,14 @@ class GildedRoseTest {
   // Qualité < 50
   
   @Test
-  void Test_Backstage_passes_to_a_TAFKAL80ETC_concert1() {
+  void testBackstagePassesToATafkal80EtcConcertUn() {
   
     int peremption = 11;
     int qualite = 49;
     Item element = new Item("Backstage passes to a TAFKAL80ETC concert", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Backstage passes to a TAFKAL80ETC concert"));
     assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(qualite+1));
@@ -150,14 +150,14 @@ class GildedRoseTest {
   // Qualité < 50
   
   @Test
-  void Test_Backstage_passes_to_a_TAFKAL80ETC_concert2() {
+  void testBackstagePassesToATafkal80EtcConcertDeux() {
   
     int peremption = 10;
     int qualite = 48;
     Item element = new Item("Backstage passes to a TAFKAL80ETC concert", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Backstage passes to a TAFKAL80ETC concert"));
     assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(qualite+2));
@@ -177,14 +177,14 @@ class GildedRoseTest {
   // Qualité < 48
   
   @Test
-  void Test_Backstage_passes_to_a_TAFKAL80ETC_concert3() {
+  void testBackstagePassesToATafkal80EtcConcertTrois() {
   
     int peremption = 5;
     int qualite = 47;
     Item element = new Item("Backstage passes to a TAFKAL80ETC concert", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Backstage passes to a TAFKAL80ETC concert"));
     assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(qualite+3));
@@ -196,14 +196,14 @@ class GildedRoseTest {
   
   // Qualité == 49
   @Test
-  void Test_Backstage_passes_to_a_TAFKAL80ETC_concert4() {
+  void testBackstagePassesToATafkal80EtcConcertQuattre() {
   
     int peremption = 5;
     int qualite = 49;
     Item element = new Item("Backstage passes to a TAFKAL80ETC concert", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Backstage passes to a TAFKAL80ETC concert"));
     assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(qualite+1));
@@ -217,14 +217,14 @@ class GildedRoseTest {
 //peremption <= 0
 // mais la qualité tombe à 0 après le concert.
   @Test
-  void Test_Backstage_passes_to_a_TAFKAL80ETC_concert5() {
+  void testBackstagePassesToATafkal80EtcConcertCinq() {
   
     int peremption = 0;
     int qualite = 40;
     Item element = new Item("Backstage passes to a TAFKAL80ETC concert", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Backstage passes to a TAFKAL80ETC concert"));
     assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(0));
@@ -242,13 +242,13 @@ class GildedRoseTest {
 //péremption <= 0
 
   @Test
-  void Test_Ni_ABBPTCSHR1() {
+  void testQuelconqueUn() {
     int peremption = 0;
     int qualite = 2;
     Item element = new Item("NotreItem", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("NotreItem"));
     assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(qualite-2));
@@ -258,13 +258,13 @@ class GildedRoseTest {
 
 //péremption > 0
   @Test
-  void Test_Ni_ABBPTCSHR2() {
+  void testQuelconqueDeux() {
     int peremption = 5;
     int qualite = 10;
     Item element = new Item("NotreItem", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("NotreItem"));
     assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(qualite-1));
@@ -274,40 +274,65 @@ class GildedRoseTest {
 
 
 //Test Conjured
-// Conjured se comporte comme les items random sauf que il perd 2 points de sellIn par jour)
-//péremption <= 1
+// Conjured perd 4 points de qualité si sellIn est négatif et 2 points si sellIn est positif
+//péremption <= 0
 
-   @Test
-  void Test_Conjured1() {
+  @Test
+  void testConjuredUn() {
+    int peremption = 0;
+    int qualite = 10;
+    Item element = new Item("Conjured", peremption, qualite);
+    GildedRose app = new GildedRose(new Item[] {element});
+    //app.updateQuality();
+    app.newUpdateQuality();
+    assertThat(element.name, is("Conjured"));
+    assertThat(element.sellIn, is(peremption-1));
+    assertThat(element.quality, is(qualite-4));
+    
+  }
+ 
+
+//péremption >= 1
+  @Test
+  void testConjuredDeux() {
     int peremption = 1;
     int qualite = 10;
     Item element = new Item("Conjured", peremption, qualite);
     GildedRose app = new GildedRose(new Item[] {element});
     //app.updateQuality();
-    app.New_updateQuality();
+    app.newUpdateQuality();
     assertThat(element.name, is("Conjured"));
-    assertThat(element.sellIn, is(peremption-2));
+    assertThat(element.sellIn, is(peremption-1));
     assertThat(element.quality, is(qualite-2));
     
   }
  
-
-//péremption > 1
-  @Test
-  void Test_Conjured2() {
-    int peremption = 2;
-    int qualite = 10;
-    Item element = new Item("Conjured", peremption, qualite);
-    GildedRose app = new GildedRose(new Item[] {element});
-    //app.updateQuality();
-    app.New_updateQuality();
-    assertThat(element.name, is("Conjured"));
-    assertThat(element.sellIn, is(peremption-2));
-    assertThat(element.quality, is(qualite-1));
+    @Test
+    void testExeptions() {
     
-  }
-  
+       int peremption = 1;
+       int qualite = 55;
+       Item element = new Item("Conjured", peremption, qualite);
+       GildedRose app = new GildedRose(new Item[] {element});
 
+       Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            app.newUpdateQuality();
+       });
+       
+       qualite = -10;
+       
+       Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            app.newUpdateQuality();
+       });
+       
+       qualite = 20;
+       Item elementt = new Item("Sulfuras, Hand of Ragnaros", peremption, qualite);
+       GildedRose appp = new GildedRose(new Item[] {element});
+       
+       Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            appp.newUpdateQuality();
+       });
+       
+    }
   
 }
-
